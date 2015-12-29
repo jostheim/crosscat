@@ -7,8 +7,8 @@ import os
 #
 import numpy
 import pylab
-pylab.ion()
-pylab.show()
+# pylab.ion()
+# pylab.show()
 #
 import crosscat.LocalEngine as LE
 import crosscat.MultiprocessingEngine as ME

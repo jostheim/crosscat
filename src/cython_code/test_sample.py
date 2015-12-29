@@ -24,8 +24,8 @@ from collections import Counter
 #
 import numpy
 import pylab
-pylab.ion()
-pylab.show()
+# pylab.ion()
+# pylab.show()
 #
 import crosscat.tests.plot_utils as pu
 import crosscat.utils.file_utils as fu

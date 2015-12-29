@@ -23,8 +23,8 @@ from collections import Counter
 #
 import numpy
 import pylab
-pylab.ion()
-pylab.show()
+# pylab.ion()
+# pylab.show()
 #
 import crosscat.utils.file_utils as fu
 import crosscat.utils.sample_utils as su

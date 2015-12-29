@@ -24,6 +24,7 @@ from libcpp.string cimport string
 from libcpp.map cimport map as c_map
 from libcpp.set cimport set as c_set
 from cython.operator import dereference
+from array import array
 cimport numpy as np
 #
 import numpy
@@ -332,22 +333,28 @@ cdef class p_State:
               self.get_column_component_suffstats_i(view_idx)
           view_state_i = dict()
           view_state_i['row_partition_model'] = row_partition_model
-          view_state_i['column_names'] = list(column_names)
-          view_state_i['column_component_suffstats'] = \
-              column_component_suffstats
+          view_state_i['column_names'] = array('u', column_names)
+          view_state_i['column_component_suffstats'] = array('f', column_component_suffstats)
           return view_state_i
     # get_X_L helpers
     def get_column_partition(self):
         hypers = self.thisptr.get_column_partition_hypers()
         assignments = self.thisptr.get_column_partition_assignments()
         counts = self.thisptr.get_column_partition_counts()
-        column_partition = dict()
-        column_partition['hypers'] = hypers
-        column_partition['assignments'] = assignments
-        column_partition['counts'] = counts
+        column_partition = (hypers, array('i', assignments), counts)
+        # column_partition['hypers'] = hypers
+        # column_partition['assignments'] = assignments
+        # column_partition['counts'] = counts
         return column_partition
     def get_column_hypers(self):
-        return self.thisptr.get_column_hypers()
+        hypers = self.thisptr.get_column_hypers()
+        new_hypers = {}
+        for pair in hypers[0]:
+            new_hypers[pair.first] = array('f')
+        for hyper in hypers:
+            for pair in hyper:
+                new_hypers[pair.first].append(pair.second)
+        return new_hypers
     def get_view_state(self):
         view_state = []
         for view_idx in range(self.get_num_views()):

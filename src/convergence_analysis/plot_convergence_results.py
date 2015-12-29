@@ -23,8 +23,8 @@ import collections
 import six
 #
 import pylab
-pylab.ion()
-pylab.show()
+# pylab.ion()
+# pylab.show()
 
 
 # settings

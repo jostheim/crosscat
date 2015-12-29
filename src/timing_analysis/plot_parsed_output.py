@@ -168,7 +168,7 @@ def plot_grouped_data(dict_of_dicts, plot_parameters, plot_filename=None):
     if plot_filename is not None:
         pu.savefig_legend_outside(plot_filename)
     else:
-        pylab.ion()
+        # pylab.ion()
         pylab.show()
     return fh
 

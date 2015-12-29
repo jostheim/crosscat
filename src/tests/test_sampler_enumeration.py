@@ -31,7 +31,7 @@ from scipy.stats import pearsonr as pearsonr
 do_plot = True
 
 if do_plot:
-	pylab.ion()
+	# pylab.ion()
 	pylab.figure(facecolor="white",figsize=(10,10))
 
 

@@ -21,7 +21,7 @@ import os
 #
 import numpy
 import pylab
-pylab.ion()
+# pylab.ion()
 from scipy.spatial.distance import pdist
 from scipy.cluster.hierarchy import linkage, dendrogram
 #

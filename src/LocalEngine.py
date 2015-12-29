@@ -52,6 +52,7 @@ class LocalEngine(EngineTemplate.EngineTemplate):
 
         """
         super(LocalEngine, self).__init__(seed=seed)
+        # mutliprocess here, we are applying a function via this map thing
         self.mapper = lambda *args: list(six.moves.map(*args))
         self.do_initialize = _do_initialize_tuple
         self.do_analyze = _do_analyze_tuple
@@ -252,6 +253,7 @@ class LocalEngine(EngineTemplate.EngineTemplate):
                                                  do_timing,
                                                  CT_KERNEL,
                                                  )
+        # multiprocess the analsis here per chain
         chain_tuples = self.mapper(self.do_analyze, arg_tuples)
         X_L_list, X_D_list, diagnostics_dict_list = zip(*chain_tuples)
         if do_timing:
